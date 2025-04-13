@@ -1,0 +1,25 @@
+https://www.youtube.com/watch?v=V-MDfE1I6u0&t=7s
+
+make setup
+
+php 8.2 no Dockerfile
+
+composer create-project laravel/laravel laravel-app
+
+ativa o mysql no .env
+DB_CONNECTION=mysql
+DB_HOST=mysql_db
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=root
+
+sudo chown -R $USER:www-data storage bootstrap/cache
+sudo chmod -R 775 storage bootstrap/cache
+
+
+
+
+
+
+
