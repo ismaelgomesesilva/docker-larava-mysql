@@ -13,4 +13,5 @@ composer-update:
 data:
 	docker exec laravel-docker php artisan migrate
 	docker exec laravel-docker php artisan db:seed
+	docker exec laravel-docker php artisan migrate:refresh --seed
 

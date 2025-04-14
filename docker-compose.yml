@@ -7,18 +7,31 @@ services:
       - ./laravel-app:/var/www/html
     ports:
       - 9000:80
-  
+    depends_on:
+      - mysql_db
+      - node
+
   mysql_db:
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: laravel
     ports:
-    - 3306:3306
-  
+      - 3306:3306
+
   phpmyadmin:
     image: phpmyadmin:latest
     ports:
       - 9001:80
     environment:
       - PMA_ARBITRARY=1
+
+  node:
+    container_name: node
+    image: node:18 # A imagem oficial do Node.js
+    working_dir: /var/www/html # Definir o diretório de trabalho
+    volumes:
+      - ./laravel-app:/var/www/html # Montar o diretório do app Laravel
+    command: "npm install && npm run dev" # Rodar npm install e npm run dev (ou outro comando que você precise)
+    ports:
+      - "5173:5173" # Expondo uma porta, se necessário, para desenvolvimento front-end
